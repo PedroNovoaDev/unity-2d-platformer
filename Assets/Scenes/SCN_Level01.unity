@@ -2960,6 +2960,9 @@ MonoBehaviour:
   - {fileID: 8763598642799732872}
   - {fileID: 3599279343249421193}
   startPoint: {fileID: 50832980}
+  duration: 0.2
+  delay: 1
+  ease: 27
 --- !u!1 &1690147322
 GameObject:
   m_ObjectHideFlags: 0
