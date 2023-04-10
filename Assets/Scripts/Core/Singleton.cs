@@ -12,6 +12,14 @@ namespace Core.Singleton
         #endregion
 
         #region Methods
+
+        // *Singleton explanation*
+        // Singleton is a design pattern with the objective to have only 1 instance type of determined class.
+        // The ideia is to implement the GameManager as a Singleton so we always have only 1 instance of it in the scene.
+        // So when the Singleton is instantiated we check if it already exists.
+        // If null we assign it to the variable Instance.
+        // If already exists we destroy that gameObject.
+
         void Awake()
         {
             if (Instance == null)
