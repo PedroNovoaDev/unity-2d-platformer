@@ -270,6 +270,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 361283907}
   friction: {x: -0.1, y: 0}
   speed: 10
+  speedRun: 20
   forceJump: 15
 --- !u!1 &499041181
 GameObject:

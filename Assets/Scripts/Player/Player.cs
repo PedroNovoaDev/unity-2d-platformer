@@ -10,9 +10,12 @@ public class Player : MonoBehaviour
     //public Vector2 velocity;
     public Vector2 friction = new Vector2(-.1f, 0);
     public float speed;
+    public float speedRun;
 
     [Header("Jump")]
     public float forceJump = 2;
+
+    private float _currentSpeed;
     #endregion
 
     #region Methods
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
     // Once an arrow is pressed we move the player, we can do this through his position or through his velocity.
     // In case of position we normalize the movement with Time.deltaTime.
     // Because we removed the friction with the material in Unity so the player couldn't get attached to the wall we need to add friction through the code.
+    // In order for the player to have the option to run we set 2 different speed variables and we check if the run key is pressed or not to alternate between the speed variables.
 
     // *Player Jump explanation*
     // The ideia is that the player jumps through the input of the space bar.
@@ -36,15 +40,20 @@ public class Player : MonoBehaviour
 
     public void HandleMovement()
     {
+        if (Input.GetKey(KeyCode.LeftControl))
+            _currentSpeed = speedRun;
+        else
+            _currentSpeed = speed;
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //myRigidbody.MovePosition(myRigidbody.position - velocity * Time.deltaTime);
-            myRigidbody.velocity = new Vector2(-speed, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
-            myRigidbody.velocity = new Vector2(speed, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
         }
 
         if (myRigidbody.velocity.x > 0)
