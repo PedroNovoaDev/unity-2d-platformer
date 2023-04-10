@@ -5,10 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Variables
-    [Header("Variables")]
+    [Header("Movement")]
     public Rigidbody2D myRigidbody;
-    public Vector2 velocity;
+    //public Vector2 velocity;
+    public Vector2 friction = new Vector2(-.1f, 0);
     public float speed;
+
+    [Header("Jump")]
+    public float forceJump = 2;
     #endregion
 
     #region Methods
@@ -18,8 +22,19 @@ public class Player : MonoBehaviour
     // We use GetKey instead of GetKeyDown because the latter gets only the first event.
     // Once an arrow is pressed we move the player, we can do this through his position or through his velocity.
     // In case of position we normalize the movement with Time.deltaTime.
+    // Because we removed the friction with the material in Unity so the player couldn't get attached to the wall we need to add friction through the code.
+
+    // *Player Jump explanation*
+    // The ideia is that the player jumps through the input of the space bar.
+    // Once the space bar is pressed a force is added to the Vector2 of the player.
 
     void Update()
+    {
+        HandleJump();
+        HandleMovement();
+    }
+
+    public void HandleMovement()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -31,6 +46,17 @@ public class Player : MonoBehaviour
             //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
             myRigidbody.velocity = new Vector2(speed, myRigidbody.velocity.y);
         }
+
+        if (myRigidbody.velocity.x > 0)
+            myRigidbody.velocity += friction;
+        else if (myRigidbody.velocity.x < 0)
+            myRigidbody.velocity -= friction;
+    }
+
+    public void HandleJump() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            myRigidbody.velocity = Vector2.up * forceJump;
     }
     #endregion
 }
