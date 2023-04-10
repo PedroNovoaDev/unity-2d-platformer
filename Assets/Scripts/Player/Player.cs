@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class Player : MonoBehaviour
 
     [Header("Jump")]
     public float forceJump = 2;
+
+    [Header("Animation")]
+    public float jumpScaleY = 1.5f;
+    public float jumpScaleX = 0.7f;
+    public float animationDuration = .3f;
+    public Ease ease = Ease.OutBack;
 
     private float _currentSpeed;
     #endregion
@@ -32,13 +39,17 @@ public class Player : MonoBehaviour
     // The ideia is that the player jumps through the input of the space bar.
     // Once the space bar is pressed a force is added to the Vector2 of the player.
 
+    // *Player Jump Scale explanation*
+    // The ideia is that when the player jumps we add a little animation so it feels more natural.
+    // To do that we tweak with the scale of the player.
+
     void Update()
     {
         HandleJump();
         HandleMovement();
     }
 
-    public void HandleMovement()
+    private void HandleMovement()
     {
         if (Input.GetKey(KeyCode.LeftControl))
             _currentSpeed = speedRun;
@@ -62,10 +73,23 @@ public class Player : MonoBehaviour
             myRigidbody.velocity -= friction;
     }
 
-    public void HandleJump() 
+    private void HandleJump() 
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) { 
             myRigidbody.velocity = Vector2.up * forceJump;
+            myRigidbody.transform.localScale = Vector2.one;
+
+            DOTween.Kill(myRigidbody.transform);
+
+            HandleScaleJump();
+        }
+    }
+
+    private void HandleScaleJump()
+    {
+        myRigidbody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        myRigidbody.transform.DOScaleY(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+
     }
     #endregion
 }
