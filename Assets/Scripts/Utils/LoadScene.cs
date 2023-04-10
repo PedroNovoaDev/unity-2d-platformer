@@ -12,12 +12,12 @@ public class LoadScene : MonoBehaviour
     // To do that we use 2 equal methods that receive different parameters.
     // Like that we can add the script to the button that'll do the action and pass the parameters in Unity inspector.
 
-    public void Load(int i)
+    private void Load(int i)
     {
         SceneManager.LoadScene(i);
     }
 
-    public void Load(string s)
+    private void Load(string s)
     {
         SceneManager.LoadScene(s);
     }
