@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Singleton;
+using TMPro;
 
 public class ItemManager : Singleton<ItemManager>
 {
     #region Variables
     [Header("Variables")]
     public int coins;
+    public TMP_Text coinsText;
     #endregion
 
     #region Methods
@@ -29,6 +31,7 @@ public class ItemManager : Singleton<ItemManager>
     public void AddCoins(int amount = 1)
     {
         coins += amount;
+        coinsText.SetText(coins.ToString());
     }
     #endregion
 }
