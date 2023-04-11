@@ -8,7 +8,7 @@ public class ItemManager : Singleton<ItemManager>
 {
     #region Variables
     [Header("Variables")]
-    public int coins;
+    public SOInt coins;
     #endregion
 
     #region Methods
@@ -24,13 +24,12 @@ public class ItemManager : Singleton<ItemManager>
 
     private void Reset()
     {
-        coins = 0;
+        coins.value = 0;
     }
 
     public void AddCoins(int amount = 1)
     {
-        coins += amount;
-        UIInGameManager.UpdateCoinsText(coins.ToString());
+        coins.value += amount;
     }
     #endregion
 }
