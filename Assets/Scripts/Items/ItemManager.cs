@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core.Singleton;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : Singleton<ItemManager>
 {
     #region Variables
     [Header("Variables")]
-    public static ItemManager Instance;
     public int coins;
     #endregion
 
@@ -15,14 +15,6 @@ public class ItemManager : MonoBehaviour
     // *Item Manager explanation*
     // The idea is that the Item Manager to be a Singleton.
     // And within it we'll have the methods to manage the itens in the game.
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
 
     private void Start()
     {
