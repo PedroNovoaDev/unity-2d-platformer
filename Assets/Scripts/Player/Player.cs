@@ -21,11 +21,14 @@ public class Player : MonoBehaviour
     public float jumpScaleX = 0.7f;
     public float jumpAnimationDuration = .3f;
     public Ease ease = Ease.OutBack;
+    public HealthBase healthBase;
+    public float timeToDestroy = 1.5f;
 
     [Header("Run Animation")]
     public string boolRun = "Run";
     public Animator animator;
     public float playerSwipeDuration = .1f;
+    public string triggerDeath = "Death";
 
     private float _currentSpeed;
     #endregion
@@ -51,6 +54,12 @@ public class Player : MonoBehaviour
     // *Player Run explanation*
     // The ideia is that when the player runs we set the animation of running to true.
     // And a little extra is the animation to swipe the sprite to the correct direction.
+
+    private void Awake()
+    {
+        if (healthBase != null)
+            healthBase.onKill += OnPlayerKill;
+    }
 
     void Update()
     {
@@ -114,6 +123,13 @@ public class Player : MonoBehaviour
         myRigidbody.transform.DOScaleY(jumpScaleY, jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
         myRigidbody.transform.DOScaleY(jumpScaleX, jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
 
+    }
+
+    private void OnPlayerKill()
+    {
+        healthBase.onKill -= OnPlayerKill;
+        animator.SetTrigger(triggerDeath);
+        Destroy(gameObject, timeToDestroy);
     }
     #endregion
 }

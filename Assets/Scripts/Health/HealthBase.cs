@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class HealthBase : MonoBehaviour
     public int startLife = 10;
     public bool destroyOnKill = false;
     public float delayToKill = 0f;
+    public Action onKill;
 
     private int _currentLife;
     private bool _isDead = false;
@@ -54,6 +56,8 @@ public class HealthBase : MonoBehaviour
 
         if (destroyOnKill)
             Destroy(gameObject, delayToKill);
+
+        onKill.Invoke();
     }
     #endregion
 }
