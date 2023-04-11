@@ -7,6 +7,10 @@ public class EnemyBase : MonoBehaviour
     #region Variables
     [Header("Variables")]
     public int damage = 10;
+
+    [Header("Animation")]
+    public Animator animator;
+    public string triggerAttack = "Attack";
     #endregion
 
     #region Methods
@@ -20,7 +24,15 @@ public class EnemyBase : MonoBehaviour
         var health = collision.gameObject.GetComponent<HealthBase>();
 
         if (health != null)
+        {
             health.Damage(damage);
+            PlayerAttackAnimation();
+        }
+    }
+
+    private void PlayerAttackAnimation()
+    {
+        animator.SetTrigger(triggerAttack);
     }
     #endregion
 }
