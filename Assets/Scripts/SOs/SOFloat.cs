@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class SOFloat : MonoBehaviour
+public class SOFloat : ScriptableObject
 {
     #region Variables
     [Header("Variables")]

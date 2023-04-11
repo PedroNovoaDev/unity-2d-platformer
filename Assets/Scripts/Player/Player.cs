@@ -17,12 +17,13 @@ public class Player : MonoBehaviour
     public float forceJump = 2;
 
     [Header("Jump Animation")]
-    public float jumpScaleY = 1.5f;
-    public float jumpScaleX = 0.7f;
-    public float jumpAnimationDuration = .3f;
     public Ease ease = Ease.OutBack;
     public HealthBase healthBase;
     public float timeToDestroy = 1.5f;
+
+    public SOFloat soJumpScaleX;
+    public SOFloat soJumpScaleY;
+    public SOFloat soJumpAnimationDuration;
 
     [Header("Run Animation")]
     public string boolRun = "Run";
@@ -120,8 +121,8 @@ public class Player : MonoBehaviour
 
     private void HandleScaleJump()
     {
-        myRigidbody.transform.DOScaleY(jumpScaleY, jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        myRigidbody.transform.DOScaleY(jumpScaleX, jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        myRigidbody.transform.DOScaleY(soJumpScaleY.value, soJumpAnimationDuration.value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        myRigidbody.transform.DOScaleY(soJumpScaleX.value, soJumpAnimationDuration.value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
 
     }
 

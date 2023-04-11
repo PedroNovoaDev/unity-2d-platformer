@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 22875798}
   - component: {fileID: 22875800}
   - component: {fileID: 22875799}
+  - component: {fileID: 22875801}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -339,6 +340,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22875797}
   m_CullTransparentMesh: 1
+--- !u!114 &22875801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22875797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0d7709fdbc2854796031027d15486b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soInt: {fileID: 11400000, guid: 8132fe0fd16105449bd6f50ec409b1fc, type: 2}
+  uiTextValue: {fileID: 22875799}
 --- !u!4 &61275202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8007466312498025151, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
@@ -905,12 +920,12 @@ MonoBehaviour:
   speed: 15
   speedRun: 25
   forceJump: 20
-  jumpScaleY: 1.5
-  jumpScaleX: 0.7
-  jumpAnimationDuration: 0.3
   ease: 27
   healthBase: {fileID: 361283912}
   timeToDestroy: 2.5
+  soJumpScaleX: {fileID: 11400000, guid: 8b25d7da8608559479c783c0b6b30cc1, type: 2}
+  soJumpScaleY: {fileID: 11400000, guid: 4fca4cb563c226d43b68b573be36bfb3, type: 2}
+  soJumpAnimationDuration: {fileID: 11400000, guid: 6f70bd76a03131547b0a661a3a001a00, type: 2}
   boolRun: Run
   animator: {fileID: 61275203}
   playerSwipeDuration: 0.2
@@ -5865,4 +5880,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a6fd3481a0cb64bb1aa9c0cd94404a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
+  coins: {fileID: 11400000, guid: 8132fe0fd16105449bd6f50ec409b1fc, type: 2}
