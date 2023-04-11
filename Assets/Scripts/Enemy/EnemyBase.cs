@@ -7,6 +7,7 @@ public class EnemyBase : MonoBehaviour
     #region Variables
     [Header("Variables")]
     public int damage = 10;
+    public HealthBase healthBase;
 
     [Header("Animation")]
     public Animator animator;
@@ -33,6 +34,11 @@ public class EnemyBase : MonoBehaviour
     private void PlayerAttackAnimation()
     {
         animator.SetTrigger(triggerAttack);
+    }
+
+    public void Damage(int amount)
+    {
+        healthBase.Damage(amount);
     }
     #endregion
 }
