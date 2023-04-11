@@ -16,11 +16,16 @@ public class Player : MonoBehaviour
     [Header("Jump")]
     public float forceJump = 2;
 
-    [Header("Animation")]
+    [Header("Jump Animation")]
     public float jumpScaleY = 1.5f;
     public float jumpScaleX = 0.7f;
-    public float animationDuration = .3f;
+    public float jumpAnimationDuration = .3f;
     public Ease ease = Ease.OutBack;
+
+    [Header("Run Animation")]
+    public string boolRun = "Run";
+    public Animator animator;
+    public float playerSwipeDuration = .1f;
 
     private float _currentSpeed;
     #endregion
@@ -43,6 +48,10 @@ public class Player : MonoBehaviour
     // The ideia is that when the player jumps we add a little animation so it feels more natural.
     // To do that we tweak with the scale of the player.
 
+    // *Player Run explanation*
+    // The ideia is that when the player runs we set the animation of running to true.
+    // And a little extra is the animation to swipe the sprite to the correct direction.
+
     void Update()
     {
         HandleJump();
@@ -52,20 +61,35 @@ public class Player : MonoBehaviour
     private void HandleMovement()
     {
         if (Input.GetKey(KeyCode.LeftControl))
+        {
             _currentSpeed = speedRun;
+            animator.speed = 2;
+        }
         else
+        {
             _currentSpeed = speed;
+            animator.speed = 1;
+        }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //myRigidbody.MovePosition(myRigidbody.position - velocity * Time.deltaTime);
             myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
+
+            if (myRigidbody.transform.localScale.x != -1)
+                myRigidbody.transform.DOScaleX(-1, playerSwipeDuration);
+
+            animator.SetBool(boolRun, true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
             myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
-        }
+
+            if (myRigidbody.transform.localScale.x != 1)
+                myRigidbody.transform.DOScaleX(1, playerSwipeDuration);
+
+            animator.SetBool(boolRun, true);
+        } else
+            animator.SetBool(boolRun, false);
 
         if (myRigidbody.velocity.x > 0)
             myRigidbody.velocity += friction;
@@ -87,8 +111,8 @@ public class Player : MonoBehaviour
 
     private void HandleScaleJump()
     {
-        myRigidbody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        myRigidbody.transform.DOScaleY(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        myRigidbody.transform.DOScaleY(jumpScaleY, jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        myRigidbody.transform.DOScaleY(jumpScaleX, jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
 
     }
     #endregion
