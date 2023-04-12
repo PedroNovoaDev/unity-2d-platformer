@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
     private void HandleScaleJump()
     {
         myRigidbody.transform.DOScaleY(soPlayerSetup.jumpScaleY, soPlayerSetup.jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
-        myRigidbody.transform.DOScaleY(soPlayerSetup.jumpScaleX, soPlayerSetup.jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
+        myRigidbody.transform.DOScaleX(soPlayerSetup.jumpScaleX, soPlayerSetup.jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
 
     }
 
