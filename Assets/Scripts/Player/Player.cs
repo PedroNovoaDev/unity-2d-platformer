@@ -10,11 +10,17 @@ public class Player : MonoBehaviour
     public Rigidbody2D myRigidbody;
     public Animator animator;
     public HealthBase healthBase;
+    public ParticleSystem jumpVFX;
     public Vector2 friction = new Vector2(-.1f, 0);
     public float timeToDestroy = 1.5f;
 
     [Header("Setup")]
     public SOPlayerSetup soPlayerSetup;
+
+    [Header("Jump Collision Check")]
+    public Collider2D collider2D;
+    public float distToGround;
+    public float spaceToGround = .1f;
 
     private float _currentSpeed;
     #endregion
@@ -32,6 +38,7 @@ public class Player : MonoBehaviour
     // *Player Jump explanation*
     // The ideia is that the player jumps through the input of the space bar.
     // Once the space bar is pressed a force is added to the Vector2 of the player.
+    // To check if the player can jump we use a RayCast to the ground.
 
     // *Player Jump Scale explanation*
     // The ideia is that when the player jumps we add a little animation so it feels more natural.
@@ -41,14 +48,21 @@ public class Player : MonoBehaviour
     // The ideia is that when the player runs we set the animation of running to true.
     // And a little extra is the animation to swipe the sprite to the correct direction.
 
+
+
     private void Awake()
     {
         if (healthBase != null)
             healthBase.onKill += OnPlayerKill;
+
+        if (collider2D != null)
+            distToGround = collider2D.bounds.extents.y;
+
     }
 
     void Update()
     {
+        IsGrounded();
         HandleJump();
         HandleMovement();
     }
@@ -94,13 +108,14 @@ public class Player : MonoBehaviour
 
     private void HandleJump() 
     {
-        if (Input.GetKeyDown(KeyCode.Space)) { 
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) { 
             myRigidbody.velocity = Vector2.up * soPlayerSetup.forceJump;
             myRigidbody.transform.localScale = Vector2.one;
 
             DOTween.Kill(myRigidbody.transform);
 
             HandleScaleJump();
+            PlayJumpVFX();
         }
     }
 
@@ -116,6 +131,18 @@ public class Player : MonoBehaviour
         healthBase.onKill -= OnPlayerKill;
         animator.SetTrigger(soPlayerSetup.triggerDeath);
         Destroy(gameObject, timeToDestroy);
+    }
+
+    private bool IsGrounded()
+    {
+        Debug.DrawRay(transform.position, -Vector2.up,Color.magenta, distToGround + spaceToGround);
+        return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
+    }
+
+    private void PlayJumpVFX()
+    {
+        if(jumpVFX != null)
+            jumpVFX.Play();
     }
     #endregion
 }

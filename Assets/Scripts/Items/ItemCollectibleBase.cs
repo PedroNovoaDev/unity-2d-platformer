@@ -15,7 +15,7 @@ public class ItemCollectibleBase : MonoBehaviour
     // *ItemCollectibleBase explanation*
     // The ideia is that the script is utilezed in different itens and each overrides the methods to it's own needs.
     // To check if the item was collected we use the trigger with the player.
-    // And if collected we deactivate the game object.
+    // And if collected we deactivate the game object and activate the VFX.
 
     private void Awake()
     {
