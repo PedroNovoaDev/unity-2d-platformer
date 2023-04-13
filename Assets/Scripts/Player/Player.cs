@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
 
     private bool IsGrounded()
     {
-        Debug.DrawRay(transform.position, -Vector2.up,Color.magenta, distToGround + spaceToGround);
+        //Debug.DrawRay(transform.position, -Vector2.up,Color.magenta, distToGround + spaceToGround);
         return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
     }
 
