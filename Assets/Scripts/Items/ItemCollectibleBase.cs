@@ -7,6 +7,7 @@ public class ItemCollectibleBase : MonoBehaviour
     #region Variables
     [Header("Variables")]
     public string compareTag = "Player";
+    public ParticleSystem particleSystem;
     #endregion
 
     #region Methods
@@ -15,6 +16,11 @@ public class ItemCollectibleBase : MonoBehaviour
     // The ideia is that the script is utilezed in different itens and each overrides the methods to it's own needs.
     // To check if the item was collected we use the trigger with the player.
     // And if collected we deactivate the game object.
+
+    private void Awake()
+    {
+        if (particleSystem != null) particleSystem.transform.SetParent(null);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,7 +38,7 @@ public class ItemCollectibleBase : MonoBehaviour
 
     protected virtual void OnCollect()
     {
-
+        if (particleSystem != null) particleSystem.Play();
     }
     #endregion
 }
