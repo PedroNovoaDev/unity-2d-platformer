@@ -8,7 +8,6 @@ public class AudioManager : Singleton<AudioManager>
     #region Variables
     [Header("Variables")]
     public AudioSource coinAudioSource;
-    public AudioSource footstepAudioSource;
     #endregion
 
     #region Methods
@@ -16,11 +15,6 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayCoinSound()
     {
         coinAudioSource.Play();
-    }
-
-    public void PlayFootstepSound()
-    {
-        footstepAudioSource.Play();
     }
     #endregion
 }
