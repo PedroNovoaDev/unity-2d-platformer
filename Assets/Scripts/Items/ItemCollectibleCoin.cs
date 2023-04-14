@@ -14,6 +14,7 @@ public class ItemCollectibleCoin : ItemCollectibleBase
     {
         base.OnCollect();
         ItemManager.Instance.AddCoins();
+        AudioManager.Instance.PlayCoinSound();
     }
     #endregion
 }

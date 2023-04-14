@@ -8,7 +8,6 @@ public class ItemCollectibleBase : MonoBehaviour
     [Header("Variables")]
     public string compareTag = "Player";
     public ParticleSystem particleSystem;
-    public AudioPlayHelper audioPlayHelper;
     #endregion
 
     #region Methods
@@ -21,8 +20,6 @@ public class ItemCollectibleBase : MonoBehaviour
     private void Awake()
     {
         if (particleSystem != null) particleSystem.transform.SetParent(null);
-        audioPlayHelper = FindObjectOfType<AudioPlayHelper>();
-        Debug.Log(audioPlayHelper);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,7 +39,6 @@ public class ItemCollectibleBase : MonoBehaviour
     protected virtual void OnCollect()
     {
         if (particleSystem != null) particleSystem.Play();
-        if (audioPlayHelper != null) audioPlayHelper.PlayCoinSound();
     }
     #endregion
 }

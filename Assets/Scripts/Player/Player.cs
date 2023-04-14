@@ -145,5 +145,11 @@ public class Player : MonoBehaviour
 
         VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP, transform.position);
     }
+
+    public void PlayRunSound()
+    {
+        Debug.Log("Devia ter chamado");
+        AudioManager.Instance.PlayFootstepSound();
+    }
     #endregion
 }
