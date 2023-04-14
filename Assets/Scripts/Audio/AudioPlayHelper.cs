@@ -5,21 +5,14 @@ using UnityEngine;
 public class AudioPlayHelper : MonoBehaviour
 {
     #region Variables
-    public KeyCode keyCode = KeyCode.P;
-    public AudioSource audioSource;
+    [Header("Variables")]
+    public AudioSource coinAudioSource;
     #endregion
 
     #region Methods
-
-    private void Update()
+    public void PlayCoinSound()
     {
-        if (Input.GetKeyDown(keyCode))
-            Play();
-    }
-
-    private void Play()
-    {
-        audioSource.Play();
+        coinAudioSource.Play();
     }
     #endregion
 }

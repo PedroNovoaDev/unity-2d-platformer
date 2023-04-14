@@ -146,8 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compareTag: Player
   particleSystem: {fileID: 1832060513765650501}
-  timeToHide: 3
-  graphicItem: {fileID: 2271977150463866960}
+  audioPlayHelper: {fileID: 0}
 --- !u!1001 &5658775403225822952
 PrefabInstance:
   m_ObjectHideFlags: 0

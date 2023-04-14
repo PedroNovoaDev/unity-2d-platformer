@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemCollectibleCoin : ItemCollectibleBase
 {
-
     #region Methods
 
     // *Coin explanation*
