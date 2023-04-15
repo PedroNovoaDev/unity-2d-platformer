@@ -12,6 +12,9 @@ public class AudioRandomPlay : MonoBehaviour
 
     #region Methods
 
+    // *AudioRandomPlay explanation*
+    // We use the AudioRandomPlay for cases where we want to play random sounds for a list, giving a more natural feel to the game.
+
     public void PlayRandom()
     {
         audioSource.clip = audioClipsList[Random.Range(0, audioClipsList.Count)];

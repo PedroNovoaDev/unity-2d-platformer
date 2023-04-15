@@ -6,9 +6,10 @@ using DG.Tweening;
 public class MenuButtonsManager : MonoBehaviour
 {
     #region Variables
+    [Header("MenuButtonsManager variables")]
     public List<GameObject> buttons;
 
-    [Header("Animation")]
+    [Header("Menu Animation")]
     public float duration = .2f;
     public float delay = .05f;
     public Ease ease = Ease.OutBack;
@@ -16,7 +17,7 @@ public class MenuButtonsManager : MonoBehaviour
 
     #region Methods
 
-    // *Menu animation explanation*
+    // *MenuButtonsManager explanation*
     // The ideia is that the buttons show one after the other popping in the screen.
     // At first we set the buttons scale to 0 and hide all of them.
     // Then we set one by one to active with the animation of scaling to 1.

@@ -5,17 +5,15 @@ using UnityEngine;
 public class ItemCollectibleBase : MonoBehaviour
 {
     #region Variables
-    [Header("Variables")]
-    public string compareTag = "Player";
+    [Header("Item Variables")]
     public ParticleSystem particleSystem;
+    public string compareTag = "Player";
     #endregion
 
     #region Methods
 
     // *ItemCollectibleBase explanation*
-    // The ideia is that the script is utilezed in different itens and each overrides the methods to it's own needs.
-    // To check if the item was collected we use the trigger with the player.
-    // And if collected we deactivate the game object and activate the VFX.
+    // The ideia is that the script is utilized in different itens and each overrides the methods to it's own needs.
 
     private void Awake()
     {
@@ -24,6 +22,9 @@ public class ItemCollectibleBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        // To check if the item should be collected we use the tag of the player.
+
         if (collision.transform.CompareTag(compareTag))
         {
             Collect();
@@ -32,6 +33,9 @@ public class ItemCollectibleBase : MonoBehaviour
 
     protected virtual void Collect()
     {
+
+        // And if collected we deactivate the game object and activate the VFX in the OnCollect function.
+
         OnCollect();
         gameObject.SetActive(false);
     }

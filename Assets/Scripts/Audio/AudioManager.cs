@@ -12,6 +12,10 @@ public class AudioManager : Singleton<AudioManager>
 
     #region Methods
 
+    // *AudioManager explanation*
+    // We use the AudioManager to control the audios of the game.
+    // This way is easier in cases where we need to destroy or deactivate the game object and play a sound, for example the coin item.
+
     public void PlayCoinSound()
     {
         coinAudioSource.Play();

@@ -143,6 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84447da2ca04374aaa73f6a625ec1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
   compareTag: Player
-  coins: {fileID: 11400000, guid: 8132fe0fd16105449bd6f50ec409b1fc, type: 2}
-  especialCoin: 3
+  coinEspecialValue: {fileID: 11400000, guid: 7bf763baecca4b34796c4f2c9b3cad0a, type: 2}

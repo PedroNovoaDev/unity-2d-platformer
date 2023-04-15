@@ -5,7 +5,7 @@ using UnityEngine;
 public class ButtonExit : MonoBehaviour
 {
     #region Methods
-    private void Quit()
+    public void Quit()
     {
         Application.Quit();
     }

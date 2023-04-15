@@ -7,7 +7,7 @@ using DG.Tweening;
 public class FlashColor : MonoBehaviour
 {
     #region Variables
-    [Header("Variables")]
+    [Header("FlashColor variables")]
     public List<SpriteRenderer> spriteRenderers;
     public Color color = Color.red;
     public float duration = .3f;
@@ -18,7 +18,7 @@ public class FlashColor : MonoBehaviour
     #region Methods
 
     // *FlashColor explanation*
-    // The ideia is to have a script that will give the player a feedback about the damage he took
+    // The ideia is to have a script that will give the player a feedback about the damage he took.
     // For that we get all the sprite renderers from the player game object and animate their color to flash.
 
     private void OnValidate()

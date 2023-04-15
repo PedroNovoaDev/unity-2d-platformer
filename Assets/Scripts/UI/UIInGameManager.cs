@@ -9,18 +9,18 @@ public class UIInGameManager : Singleton<UIInGameManager>
     #region Variables
     [Header("Variables")]
     public TextMeshProUGUI uiCoinsText;
+    public SOInt playerCoins;
     #endregion
 
     #region Methods
 
-    // *Item Manager explanation*
-    // The idea is that the Item Manager to be a Singleton.
-    // We'll call it to update all our UI objects, for example the coins.
-    // By declaring the method static we eliminate the need to call the Instance in the other class.
+    // *UIInGameManager explanation*
+    // The idea is that the UIInGameManager to be a Singleton.
+    // It'll be used to updated the elements of the UI.
 
-    public static void UpdateCoinsText(string s)
+    public void UpdateCoinsText()
     {
-        Instance.uiCoinsText.text = s;
+        Instance.uiCoinsText.text = playerCoins.value.ToString();
     }
     #endregion
 }

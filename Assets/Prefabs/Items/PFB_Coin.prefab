@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd16ca98f6d66f4e847bb1f744dad22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compareTag: Player
   particleSystem: {fileID: 1832060513765650501}
-  audioPlayHelper: {fileID: 0}
+  compareTag: Player
+  coinValue: {fileID: 11400000, guid: 8132fe0fd16105449bd6f50ec409b1fc, type: 2}
 --- !u!1001 &5658775403225822952
 PrefabInstance:
   m_ObjectHideFlags: 0
