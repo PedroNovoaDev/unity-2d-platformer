@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public Animator animator;
     public HealthBase healthBase;
     public Vector2 friction = new Vector2(-.1f, 0);
-    public float timeToDestroy = 1.5f;
 
     [Header("Setup")]
     public SOPlayerSetup soPlayerSetup;
@@ -144,7 +143,6 @@ public class Player : MonoBehaviour
         animator.SetTrigger(soPlayerSetup.triggerDeath);
         AudioManager.Instance.PlayPlayerDeathSound();
         UIInGameManager.Instance.TooglePlayerDeathScreen(true);
-        //Destroy(gameObject, timeToDestroy);
     }
 
     private bool IsGrounded()

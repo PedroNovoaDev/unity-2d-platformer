@@ -7620,7 +7620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBase: {fileID: 1199606506}
-  damage: 10
+  damage: 1
   timeToDestroy: 1.5
   animator: {fileID: 1629916205}
   triggerAttack: Attack
@@ -9628,7 +9628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932893885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80, y: 0, z: -15}
+  m_LocalPosition: {x: 0.1, y: 10, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 340595022}

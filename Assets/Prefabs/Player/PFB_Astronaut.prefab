@@ -1254,7 +1254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b7f736660ef14988a4e86ac27da4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 10
+  startLife: 1
   _flashColor: {fileID: 1469496724}
 --- !u!114 &1469496724
 MonoBehaviour:
