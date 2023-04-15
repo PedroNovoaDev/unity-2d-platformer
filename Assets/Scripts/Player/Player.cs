@@ -6,11 +6,10 @@ using DG.Tweening;
 public class Player : MonoBehaviour
 {
     #region Variables
-    [Header("Variables")]
+    [Header("Player Variables")]
     public Rigidbody2D myRigidbody;
     public Animator animator;
     public HealthBase healthBase;
-    public ParticleSystem jumpVFX;
     public Vector2 friction = new Vector2(-.1f, 0);
     public float timeToDestroy = 1.5f;
 
@@ -27,28 +26,8 @@ public class Player : MonoBehaviour
 
     #region Methods
 
-    // *Player Movement explanation*
-    // The ideia is that we move the player through the input of the arrows.
-    // We use GetKey instead of GetKeyDown because the latter gets only the first event.
-    // Once an arrow is pressed we move the player, we can do this through his position or through his velocity.
-    // In case of position we normalize the movement with Time.deltaTime.
-    // Because we removed the friction with the material in Unity so the player couldn't get attached to the wall we need to add friction through the code.
-    // In order for the player to have the option to run we set 2 different speed variables and we check if the run key is pressed or not to alternate between the speed variables.
-
-    // *Player Jump explanation*
-    // The ideia is that the player jumps through the input of the space bar.
-    // Once the space bar is pressed a force is added to the Vector2 of the player.
-    // To check if the player can jump we use a RayCast to the ground.
-
-    // *Player Jump Scale explanation*
-    // The ideia is that when the player jumps we add a little animation so it feels more natural.
-    // To do that we tweak with the scale of the player.
-
-    // *Player Run explanation*
-    // The ideia is that when the player runs we set the animation of running to true.
-    // And a little extra is the animation to swipe the sprite to the correct direction.
-
-
+    // *Player explanation*
+    // Here we'll have all the methods to control the player.
 
     private void Awake()
     {
@@ -57,18 +36,30 @@ public class Player : MonoBehaviour
 
         if (collider2D != null)
             distToGround = collider2D.bounds.extents.y;
-
     }
 
     void Update()
     {
+        // In the Update we'll check if the Player in grounded to enable the jump or not.
+        // And we'll also process the movement and jump here.
+
         IsGrounded();
-        HandleJump();
         HandleMovement();
+        HandleJump();
     }
 
     private void HandleMovement()
     {
+
+        // The ideia is that we move the player through the input of the arrows.
+        // We use GetKey instead of GetKeyDown because the latter gets only the first event.
+        // Once an arrow is pressed we move the player, we can do this through his position or through his velocity.
+        // In case of position we normalize the movement with Time.deltaTime.
+
+        // Run movement
+        // In order for the player to have the option to run we set 2 different speed variables and we check if the run key is pressed or not to alternate between the speed variables.
+        // The ideia is that when the player runs we set the animation of running to true.
+        // And a little extra is the animation to swipe the sprite to the correct direction.
         if (Input.GetKey(KeyCode.LeftControl))
         {
             _currentSpeed = soPlayerSetup.speedRun;
@@ -80,6 +71,7 @@ public class Player : MonoBehaviour
             animator.speed = 1;
         }
 
+        // Normal movement
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
@@ -100,6 +92,7 @@ public class Player : MonoBehaviour
         } else
             animator.SetBool(soPlayerSetup.boolRun, false);
 
+        // Because we removed the friction with the material in Unity so the player couldn't get attached to the wall we need to add friction through the code.
         if (myRigidbody.velocity.x > 0)
             myRigidbody.velocity += friction;
         else if (myRigidbody.velocity.x < 0)
@@ -108,6 +101,11 @@ public class Player : MonoBehaviour
 
     private void HandleJump() 
     {
+
+        // The ideia is that the player jumps through the input of the space bar.
+        // Once the space bar is pressed a force is added to the Vector2 of the player.
+        // To check if the player can jump we use a RayCast to the ground.
+
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) { 
             myRigidbody.velocity = Vector2.up * soPlayerSetup.forceJump;
             myRigidbody.transform.localScale = Vector2.one;
@@ -121,6 +119,10 @@ public class Player : MonoBehaviour
 
     private void HandleScaleJump()
     {
+
+        // The ideia is that when the player jumps we add a little animation so it feels more natural.
+        // To do that we tweak with the scale of the player, scaling it a little bit.
+
         myRigidbody.transform.DOScaleY(soPlayerSetup.jumpScaleY, soPlayerSetup.jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
         myRigidbody.transform.DOScaleX(soPlayerSetup.jumpScaleX, soPlayerSetup.jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
 
@@ -141,8 +143,6 @@ public class Player : MonoBehaviour
 
     private void PlayJumpVFX()
     {
-        //if(jumpVFX != null) jumpVFX.Play();
-
         VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP, transform.position);
     }
     #endregion
