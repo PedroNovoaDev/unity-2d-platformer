@@ -29,18 +29,21 @@ public class GameManager : Singleton<GameManager>
     // *GameManager explanation*
     // We use the GameManager to control the state of the game.
 
-    public void Start()
+    private void Start()
     {
         Init();
     }
 
-    public void Init()
+    private void Init()
     {
         SpawnPlayer();
     }
 
     private void SpawnPlayer()
     {
+
+        // At the start of the GameManager script we'll spawn the player with its prefab and a little animation.
+
         _currentPlayer = Instantiate(playerPrefab);
         _currentPlayer.transform.position = startPoint.transform.position;
         _currentPlayer.transform.DOScale(0, duration).SetEase(ease).From().SetDelay(delay);

@@ -400,7 +400,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinAudioSource: {fileID: 1088754951}
-  footstepAudioSource: {fileID: 0}
 --- !u!4 &61275202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8007466312498025151, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
@@ -8397,6 +8396,10 @@ PrefabInstance:
     - target: {fileID: 4430309908512713620, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
       propertyPath: m_Bounds.m_Extent.z
       value: 0.015000343
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466338868038500726, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4726148649646493606, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
       propertyPath: m_Bounds.m_Center.y
