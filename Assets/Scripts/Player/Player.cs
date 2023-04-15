@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public float spaceToGround = .1f;
 
     private float _currentSpeed;
+    private bool _isDead;
     #endregion
 
     #region Methods
@@ -36,6 +37,8 @@ public class Player : MonoBehaviour
 
         if (collider2D != null)
             distToGround = collider2D.bounds.extents.y;
+
+        _isDead = false;
     }
 
     void Update()
@@ -44,8 +47,12 @@ public class Player : MonoBehaviour
         // And we'll also process the movement and jump here.
 
         IsGrounded();
-        HandleMovement();
-        HandleJump();
+
+        if (!_isDead)
+        {
+            HandleMovement();
+            HandleJump();
+        }
     }
 
     private void HandleMovement()
@@ -60,6 +67,7 @@ public class Player : MonoBehaviour
         // In order for the player to have the option to run we set 2 different speed variables and we check if the run key is pressed or not to alternate between the speed variables.
         // The ideia is that when the player runs we set the animation of running to true.
         // And a little extra is the animation to swipe the sprite to the correct direction.
+
         if (Input.GetKey(KeyCode.LeftControl))
         {
             _currentSpeed = soPlayerSetup.speedRun;
@@ -130,10 +138,11 @@ public class Player : MonoBehaviour
 
     private void OnPlayerKill()
     {
+        _isDead = true;
         healthBase.onKill -= OnPlayerKill;
         animator.SetTrigger(soPlayerSetup.triggerDeath);
         AudioManager.Instance.PlayPlayerDeathSound();
-        Destroy(gameObject, timeToDestroy);
+        //Destroy(gameObject, timeToDestroy);
     }
 
     private bool IsGrounded()
