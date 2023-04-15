@@ -10,6 +10,7 @@ public class UIInGameManager : Singleton<UIInGameManager>
     [Header("Variables")]
     public TextMeshProUGUI uiCoinsText;
     public SOInt playerCoins;
+    public GameObject playerDeathScreen;
     #endregion
 
     #region Methods
@@ -21,6 +22,11 @@ public class UIInGameManager : Singleton<UIInGameManager>
     public void UpdateCoinsText()
     {
         Instance.uiCoinsText.text = playerCoins.value.ToString();
+    }
+
+    public void TooglePlayerDeathScreen(bool state)
+    {
+        playerDeathScreen.SetActive(state);
     }
     #endregion
 }
