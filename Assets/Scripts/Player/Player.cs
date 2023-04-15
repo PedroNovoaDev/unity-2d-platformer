@@ -132,6 +132,7 @@ public class Player : MonoBehaviour
     {
         healthBase.onKill -= OnPlayerKill;
         animator.SetTrigger(soPlayerSetup.triggerDeath);
+        AudioManager.Instance.PlayPlayerDeathSound();
         Destroy(gameObject, timeToDestroy);
     }
 
