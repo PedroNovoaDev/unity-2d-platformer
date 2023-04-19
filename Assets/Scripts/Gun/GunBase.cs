@@ -47,6 +47,7 @@ public class GunBase : MonoBehaviour
         var projectile = Instantiate(prefabProjectile);
         projectile.transform.position = positionToShoot.position;
         projectile.side = playerSideReference.transform.localScale.x;
+        AudioManager.Instance.PlayPlayerShootSound();
     }
     #endregion
 }
