@@ -16,9 +16,8 @@ MonoBehaviour:
   speed: 15
   speedRun: 25
   forceJump: 20
-  jumpScaleX: 1
   jumpScaleY: 1.15
-  jumpAnimationDuration: 0.5
+  jumpAnimationDuration: 0.3
   ease: 27
   boolRun: Run
   playerSwipeDuration: 0.2

@@ -116,7 +116,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) { 
             myRigidbody.velocity = Vector2.up * soPlayerSetup.forceJump;
-            myRigidbody.transform.localScale = Vector2.one;
 
             DOTween.Kill(myRigidbody.transform);
 
@@ -132,7 +131,6 @@ public class Player : MonoBehaviour
         // To do that we tweak with the scale of the player, scaling it a little bit.
 
         myRigidbody.transform.DOScaleY(soPlayerSetup.jumpScaleY, soPlayerSetup.jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
-        myRigidbody.transform.DOScaleX(soPlayerSetup.jumpScaleX, soPlayerSetup.jumpAnimationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
 
     }
 
