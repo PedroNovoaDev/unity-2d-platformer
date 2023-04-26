@@ -14,6 +14,8 @@ public class EnemyBase : MonoBehaviour
     public Animator animator;
     public string triggerAttack = "Attack";
     public string triggerDeath = "Death";
+
+    private BoxCollider2D myBoxCollider2D;
     #endregion
 
     #region Methods
@@ -29,6 +31,8 @@ public class EnemyBase : MonoBehaviour
 
         if (healthBase != null)
             healthBase.onKill += OnEnemyKill;
+
+        myBoxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     private void OnEnemyKill()
@@ -37,6 +41,7 @@ public class EnemyBase : MonoBehaviour
         // The OnEnemyKill is a callback function invoked in the HealthBase script to trigger the death animation and destruction of the enemy.
 
         healthBase.onKill -= OnEnemyKill;
+        myBoxCollider2D.enabled = false;
         EnemyDeathAnimation();
         AudioManager.Instance.PlayEnemyDeathSound();
         Destroy(gameObject, timeToDestroy);
@@ -46,7 +51,7 @@ public class EnemyBase : MonoBehaviour
     {
 
         // Before applying any damage we check if the game object has a HealthBase component.
-        // Only if trye we apply the damage and trigger the animation.
+        // Only if true we apply the damage and trigger the animation.
 
         var health = collision.gameObject.GetComponent<HealthBase>();
 
