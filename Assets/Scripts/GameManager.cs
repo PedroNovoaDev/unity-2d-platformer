@@ -37,8 +37,26 @@ public class GameManager : Singleton<GameManager>
         Init();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (UIInGameManager.Instance.pauseScreen.activeInHierarchy == false)
+            {
+                UIInGameManager.Instance.TooglePauseScreen(true);
+                Time.timeScale = 0;
+            }
+            else
+            {   
+                UIInGameManager.Instance.TooglePauseScreen(false);
+                Time.timeScale = 1;
+            }
+        }
+    }
+
     private void Init()
     {
+        Time.timeScale = 1;
         SpawnPlayer();
         SpawnEnemys();
     }

@@ -28,6 +28,7 @@ public class EnemyBase : MonoBehaviour
     {
 
         // In the Awake of the EnemyBase script we check if the game object has a HealthBase defined so we can add the onKill variable callback.
+        // We also get the reference of the collider to deactivate it when the enemy die.
 
         if (healthBase != null)
             healthBase.onKill += OnEnemyKill;

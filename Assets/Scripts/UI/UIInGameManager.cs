@@ -11,6 +11,7 @@ public class UIInGameManager : Singleton<UIInGameManager>
     public TextMeshProUGUI uiCoinsText;
     public SOInt playerCoins;
     public GameObject playerDeathScreen;
+    public GameObject pauseScreen;
     #endregion
 
     #region Methods
@@ -27,6 +28,11 @@ public class UIInGameManager : Singleton<UIInGameManager>
     public void TooglePlayerDeathScreen(bool state)
     {
         playerDeathScreen.SetActive(state);
+    }
+
+    public void TooglePauseScreen(bool state)
+    {
+        pauseScreen.SetActive(state);
     }
     #endregion
 }
