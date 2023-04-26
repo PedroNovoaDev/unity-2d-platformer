@@ -13,13 +13,16 @@ public class GameManager : Singleton<GameManager>
     [Header("Player Starting point")]
     public Transform startPoint;
 
+    [Header("Enemy prefab")]
+    public GameObject enemyPrefab;
+
+    [Header("Enemy Starting points")]
+    public GameObject[] enemyStartPoints;
+
     [Header("Player Spawn Animation")]
     public float duration = .2f;
     public float delay = .05f;
     public Ease ease = Ease.OutBack;
-
-    [Header("Enemies list")]
-    public List<GameObject> enemies;
 
     private GameObject _currentPlayer;
     #endregion
@@ -37,6 +40,7 @@ public class GameManager : Singleton<GameManager>
     private void Init()
     {
         SpawnPlayer();
+        SpawnEnemys();
     }
 
     private void SpawnPlayer()
@@ -47,6 +51,18 @@ public class GameManager : Singleton<GameManager>
         _currentPlayer = Instantiate(playerPrefab);
         _currentPlayer.transform.position = startPoint.transform.position;
         _currentPlayer.transform.DOScale(0, duration).SetEase(ease).From().SetDelay(delay);
+    }
+
+    private void SpawnEnemys()
+    {
+
+        // At the start of the GameManager script we'll spawn the enemies in the starting point with its prefab.
+
+        for (int i = 0; i < enemyStartPoints.Length; i++)
+        {
+            Instantiate(enemyPrefab, enemyStartPoints[i].transform);
+        }
+
     }
     #endregion
 }
