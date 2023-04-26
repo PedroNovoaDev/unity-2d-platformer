@@ -38,6 +38,7 @@ public class EnemyBase : MonoBehaviour
 
         healthBase.onKill -= OnEnemyKill;
         EnemyDeathAnimation();
+        AudioManager.Instance.PlayEnemyDeathSound();
         Destroy(gameObject, timeToDestroy);
     }
 

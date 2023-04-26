@@ -10,6 +10,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioSource coinAudioSource;
     public AudioSource playerDeathAudioSource;
     public AudioSource playerShootAudioSource;
+    public AudioSource enemyDeathAudioSource;
     #endregion
 
     #region Methods
@@ -31,6 +32,11 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayPlayerShootSound()
     {
         playerShootAudioSource.Play();
+    }
+
+    public void PlayEnemyDeathSound()
+    {
+        enemyDeathAudioSource.Play();
     }
     #endregion
 }
