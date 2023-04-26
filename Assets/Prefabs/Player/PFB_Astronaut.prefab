@@ -1135,7 +1135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8835229685202505509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2616809535132260505}
@@ -1237,7 +1237,6 @@ MonoBehaviour:
   animator: {fileID: 6413013834153556191}
   healthBase: {fileID: 1469496725}
   friction: {x: -0.5, y: 0}
-  timeToDestroy: 2
   soPlayerSetup: {fileID: 11400000, guid: fea19f23db751c844bc90387bfdf1218, type: 2}
   collider2D: {fileID: 1469496728}
   distToGround: 0
