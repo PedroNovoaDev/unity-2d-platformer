@@ -584,7 +584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 350, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523615790
@@ -609,9 +609,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Move - Arrows Keys
 
+    CRTL - Run
+
     Jump - Space bar
 
-    Shoot - S
+    Shoot -
+    S
 
     Pause- P'
   m_isRightToLeft: 0
@@ -1447,7 +1450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &976032293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1466,7 +1469,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 86}
-  m_SizeDelta: {x: 750, y: 350}
+  m_SizeDelta: {x: 750, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &976032294
 MonoBehaviour:

@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
             distToGround = collider2D.bounds.extents.y;
 
         _isDead = false;
-        UIInGameManager.Instance.TooglePlayerDeathScreen(false);
+        UIInGameManager.Instance.ToogleEndgameScreen(false, "");
     }
 
     void Update()
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
         healthBase.onKill -= OnPlayerKill;
         animator.SetTrigger(soPlayerSetup.triggerDeath);
         AudioManager.Instance.PlayPlayerDeathSound();
-        UIInGameManager.Instance.TooglePlayerDeathScreen(true);
+        UIInGameManager.Instance.ToogleEndgameScreen(true, "You died :(");
     }
 
     private bool IsGrounded()

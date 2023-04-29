@@ -10,7 +10,8 @@ public class UIInGameManager : Singleton<UIInGameManager>
     [Header("Variables")]
     public TextMeshProUGUI uiCoinsText;
     public SOInt playerCoins;
-    public GameObject playerDeathScreen;
+    public GameObject endGameScreen;
+    public TextMeshProUGUI endGameText;
     public GameObject pauseScreen;
     #endregion
 
@@ -25,9 +26,10 @@ public class UIInGameManager : Singleton<UIInGameManager>
         Instance.uiCoinsText.text = playerCoins.value.ToString();
     }
 
-    public void TooglePlayerDeathScreen(bool state)
+    public void ToogleEndgameScreen(bool state, string endGameString)
     {
-        playerDeathScreen.SetActive(state);
+        endGameScreen.SetActive(state);
+        Instance.endGameText.text = endGameString;
     }
 
     public void TooglePauseScreen(bool state)
