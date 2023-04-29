@@ -24,6 +24,7 @@ public class EnemyBase : MonoBehaviour
 
     private BoxCollider2D _myBoxCollider2D;
     private Rigidbody2D _myRigidBody2D;
+    private bool _isDead;
     #endregion
 
     #region Methods
@@ -49,20 +50,23 @@ public class EnemyBase : MonoBehaviour
 
     public void Update()
     {
-        if (_moveRight)
+        if (!_isDead)
         {
-            _myRigidBody2D.AddForce(Vector2.right * EnemySpeed * Time.deltaTime);
-        }
+            if (_moveRight)
+            {
+                _myRigidBody2D.AddForce(Vector2.right * EnemySpeed * Time.deltaTime);
+            }
 
-        if (_myRigidBody2D.position.x >= _endPos)
-            _moveRight = false;
+            if (_myRigidBody2D.position.x >= _endPos)
+                _moveRight = false;
 
-        if (!_moveRight)
-        {
-            _myRigidBody2D.AddForce(-Vector2.right * EnemySpeed * Time.deltaTime);
+            if (!_moveRight)
+            {
+                _myRigidBody2D.AddForce(-Vector2.right * EnemySpeed * Time.deltaTime);
+            }
+            if (_myRigidBody2D.position.x <= _startPos)
+                _moveRight = true;
         }
-        if (_myRigidBody2D.position.x <= _startPos)
-            _moveRight = true;
     }
 
     private void OnEnemyKill()
@@ -71,6 +75,7 @@ public class EnemyBase : MonoBehaviour
         // The OnEnemyKill is a callback function invoked in the HealthBase script to trigger the death animation and destruction of the enemy.
 
         healthBase.onKill -= OnEnemyKill;
+        _isDead = true;
         _myBoxCollider2D.enabled = false;
         EnemyDeathAnimation();
         AudioManager.Instance.PlayEnemyDeathSound();
