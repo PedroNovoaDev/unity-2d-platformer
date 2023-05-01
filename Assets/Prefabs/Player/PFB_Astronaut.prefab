@@ -1240,7 +1240,7 @@ MonoBehaviour:
   soPlayerSetup: {fileID: 11400000, guid: fea19f23db751c844bc90387bfdf1218, type: 2}
   collider2D: {fileID: 1469496728}
   distToGround: 0
-  spaceToGround: 1
+  spaceToGround: 0.15
 --- !u!114 &1469496725
 MonoBehaviour:
   m_ObjectHideFlags: 0
