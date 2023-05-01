@@ -16,8 +16,7 @@ public class Player : MonoBehaviour
     public SOPlayerSetup soPlayerSetup;
 
     [Header("Jump Collision Check")]
-    public Collider2D collider2D;
-    public float distToGround;
+    public LayerMask groundCheckLayerMask;
     public float spaceToGround = .1f;
 
     private float _currentSpeed;
@@ -34,8 +33,7 @@ public class Player : MonoBehaviour
         if (healthBase != null)
             healthBase.onKill += OnPlayerKill;
 
-        if (collider2D != null)
-            distToGround = collider2D.bounds.extents.y;
+ 
 
         _isDead = false;
         UIInGameManager.Instance.ToogleEndgameScreen(false, "");
@@ -145,13 +143,23 @@ public class Player : MonoBehaviour
 
     private bool IsGrounded()
     {
-        //Debug.DrawRay(transform.position, -Vector2.up,Color.magenta, distToGround + spaceToGround);
-        return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
+        //Debug.DrawRay(transform.position, -Vector2.up,Color.magenta, spaceToGround);
+        return Physics2D.Raycast(transform.position, -Vector2.up, spaceToGround, groundCheckLayerMask);
     }
 
     private void PlayJumpVFX()
     {
         VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP, transform.position);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == "endGameTag")
+        {
+        Time.timeScale = 0;
+        UIInGameManager.Instance.ToogleEndgameScreen(true, "Contratulations, you got to the end :)");
+        }
     }
     #endregion
 }

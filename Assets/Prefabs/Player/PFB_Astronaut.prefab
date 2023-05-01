@@ -1238,9 +1238,10 @@ MonoBehaviour:
   healthBase: {fileID: 1469496725}
   friction: {x: -0.5, y: 0}
   soPlayerSetup: {fileID: 11400000, guid: fea19f23db751c844bc90387bfdf1218, type: 2}
-  collider2D: {fileID: 1469496728}
-  distToGround: 0
-  spaceToGround: 0.15
+  groundCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  spaceToGround: 5
 --- !u!114 &1469496725
 MonoBehaviour:
   m_ObjectHideFlags: 0
