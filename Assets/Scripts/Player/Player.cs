@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     private float _currentSpeed;
     private bool _isDead;
+    private bool _gameEnded;
     #endregion
 
     #region Methods
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
  
 
         _isDead = false;
+        _gameEnded = false;
         UIInGameManager.Instance.ToogleEndgameScreen(false, "");
     }
 
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
 
         IsGrounded();
 
-        if (!_isDead)
+        if (!_isDead && !_gameEnded)
         {
             HandleMovement();
             HandleJump();
@@ -157,7 +159,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "endGameTag")
         {
-        Time.timeScale = 0;
+        _gameEnded = true;
         UIInGameManager.Instance.ToogleEndgameScreen(true, "Contratulations, you got to the end :)");
         }
     }
